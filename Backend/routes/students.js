@@ -23,7 +23,7 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-/* router.route('/:id').get((req, res) => {
+router.route('/:id').get((req, res) => {
   Student.findById(req.params.id)
     .then(students => res.json(students))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -37,17 +37,16 @@ router.route('/:id').delete((req, res) => {
 
 router.route('/update/:id').post((req, res) => {
   Student.findById(req.params.id)
-    .then(students => {
-      exercise.username = req.body.username;
-      exercise.description = req.body.description;
-      exercise.duration = Number(req.body.duration);
-      exercise.date = Date.parse(req.body.date);
+    .then(student => {
+      student.studentName = req.body.studentName;
+      student.studetnGrade = req.body.studetnGrade;
+      student.date = Date.parse(req.body.date);
 
-      exercise.save()
-        .then(() => res.json('Exercise updated!'))
+      student.save()
+        .then(() => res.json('Student updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
-}); */
+});
 
 module.exports = router;
