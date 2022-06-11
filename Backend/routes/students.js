@@ -10,7 +10,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const studentName = req.body.studentName;
   const studentGrade = req.body.studentGrade;
-  const date = Date.parse(req.body.date);
+  const date = req.body.date;
 
   const newStudent = new Student({
     studentName,
@@ -40,7 +40,7 @@ router.route('/update/:id').post((req, res) => {
     .then(student => {
       student.studentName = req.body.studentName;
       student.studetnGrade = req.body.studetnGrade;
-      student.date = Date.parse(req.body.date);
+      student.date = req.body.date;
 
       student.save()
         .then(() => res.json('Student updated!'))
